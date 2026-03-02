@@ -14,10 +14,26 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.get("/",(req, res)=>{
+    res.status(200).json(
+        {
+            success:true,
+            message:"Todo  is Running",
+            endpoints:{
+                login:"/auth/login",
+                register:"/auth/register",
+                refresh:"/auth/refresh",
+                logout:"/auth/logout",
+                getAll:"GET /todos",
+            }
+        }
+    )
+})
 
 app.use("/auth", authRoutes);
 app.use("/todos", todoRoutes);
 app.use("/users", userRoutes);
+
 
 app.use(errorHandler);
 
